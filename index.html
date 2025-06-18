@@ -51,19 +51,59 @@
   <main class="ml-72 flex flex-col h-screen overflow-hidden">
 
     <!-- Home Section -->
-    <section id="home" class="content-section active flex-1 overflow-auto p-10 bg-white/80 backdrop-blur-sm rounded-tl-3xl shadow-inner">
-      <div class="max-w-4xl mx-auto text-center space-y-8">
-        <img src="https://assets-v2.lottiefiles.com/a/97fc9faa-117f-11ee-a3b3-5fb6ab9865dc/vR6mwrGRsr.gif" alt="Dancing Robot" class="w-64 h-64 mx-auto rounded-xl shadow-2xl" />
-        <div class="bg-white p-8 rounded-2xl shadow-lg space-y-4">
-          <p>Chào mừng bạn đến với <strong>AI HUB EVNGENCO1</strong> - trung tâm trí tuệ nhân tạo của chúng tôi!</p>
-          <p>Đây là nền tảng tập trung các công cụ AI tiên tiến, được thiết kế nhằm:</p>
-          <p>🤖 <strong>Phổ cập AI</strong> - Đưa công nghệ AI đến gần hơn với mọi người</p>
-          <p>⚡ <strong>Khai thác dễ dàng</strong> - Giao diện thân thiện, sử dụng đơn giản</p>
-          <p>🎯 <strong>Quản lý tập trung</strong> - Tất cả công cụ AI trong một nền tảng duy nhất</p>
-          <p>Hãy khám phá các tính năng mạnh mẽ của chúng tôi và trải nghiệm tương lai của công nghệ!</p>
-        </div>
-      </div>
-    </section>
+    <section id="home" class="py-16 bg-gradient-to-b from-gray-100 to-white">
+  <div class="container mx-auto px-4 text-center">
+    <div class="inline-flex flex-col items-center bg-white bg-opacity-60 backdrop-blur-lg p-10 rounded-3xl shadow-xl max-w-2xl space-y-8">
+      <!-- Ảnh robot -->
+      <img
+        src="https://assets-v2.lottiefiles.com/a/97fc9faa-117f-11ee-a3b3-5fb6ab9865dc/vR6mwrGRsr.gif"
+        alt="Dancing Robot"
+        class="w-48 h-48"
+      />
+      <!-- Tiêu đề chính -->
+      <h1 class="text-4xl font-extrabold text-gray-800">
+        Chào mừng bạn đến với
+        <span class="text-blue-600">AI HUB EVNGENCO1</span>
+      </h1>
+      <!-- Mô tả ngắn -->
+      <p class="text-lg text-gray-600">
+        Trung tâm trí tuệ nhân tạo của chúng tôi! Nền tảng tập trung các công cụ AI tiên tiến, được thiết kế nhằm:
+      </p>
+      <!-- Danh sách tính năng -->
+      <ul class="w-full space-y-4 text-left">
+        <li class="flex items-start gap-4">
+          <span class="text-2xl">🤖</span>
+          <div>
+            <p class="font-semibold text-gray-800">Phổ cập AI</p>
+            <p class="text-gray-600">Đưa công nghệ AI đến gần hơn với mọi người</p>
+          </div>
+        </li>
+        <li class="flex items-start gap-4">
+          <span class="text-2xl">⚡</span>
+          <div>
+            <p class="font-semibold text-gray-800">Khai thác dễ dàng</p>
+            <p class="text-gray-600">Giao diện thân thiện, sử dụng đơn giản</p>
+          </div>
+        </li>
+        <li class="flex items-start gap-4">
+          <span class="text-2xl">🎯</span>
+          <div>
+            <p class="font-semibold text-gray-800">Quản lý tập trung</p>
+            <p class="text-gray-600">Tất cả công cụ AI trong một nền tảng duy nhất</p>
+          </div>
+        </li>
+      </ul>
+      <!-- Button CTA -->
+      <a
+        href="#features"
+        class="inline-block px-8 py-3 bg-blue-600 text-white font-semibold rounded-full hover:bg-blue-700 transition"
+      >
+        Khám phá ngay
+      </a>
+    </div>
+  </div>
+</section>
+
 
     <!-- Chat AI Section -->
     <section id="chat" class="content-section hidden flex-1 overflow-auto p-8 bg-white/80 backdrop-blur-sm rounded-tl-3xl shadow-inner">
@@ -225,19 +265,121 @@
 </section>
 
     <!-- About Section -->
-    <section id="about" class="content-section hidden flex-1 overflow-auto p-10 bg-white/80 backdrop-blur-sm rounded-tl-3xl shadow-inner">
-      <div class="max-w-3xl mx-auto space-y-6 text-center">
-        <h2 class="text-4xl font-bold text-primary">Giới thiệu AI HUB EVNGENCO1</h2>
-        <p>AI Hub EVNGENCO1 là nền tảng trung tâm kết nối thống nhất các dịch vụ AI, được phát triển nhằm phổ cập công nghệ trí tuệ nhân tạo đến toàn bộ cán bộ công nhân viên trong Tổng công ty. Nền tảng cung cấp một cổng truy cập duy nhất, an toàn và thuận tiện cho việc khai thác các công cụ AI hiện đại.</p>
-        <p>Tính năng chính:</p>
-        <p>- Hệ thống API Gateway tập trung: Kết nối an toàn với các dịch vụ AI hàng đầu như ChatGPT và Google Gemini thông qua khóa API được quản lý tập trung</p>
-        <p>- Giao diện người dùng thân thiện: Ứng dụng web nội bộ cho phép trải nghiệm các công cụ AI một cách trực quan và dễ sử dụng</p>
-        <p>- Tích hợp mô hình nội bộ: Khả năng mở rộng để kết nối các mô hình AI được huấn luyện riêng cho EVNGENCO1</p>
-        <p>- Quản lý tập trung: Theo dõi lịch sử sử dụng, kiểm soát chi phí và đảm bảo tuân thủ quy định</p>
-        <br></br>
-        <p>AI HUB EVNGENCO1 là bước tiến quan trọng trong hành trình chuyển đổi số, giúp Tổng công ty ứng dụng AI một cách hiệu quả, an toàn và phù hợp với đặc thù hoạt động trong lĩnh vực điện lực.</p>
+<section id="about" class="content-section hidden flex-1 overflow-auto p-10 bg-white/80 backdrop-blur-sm rounded-tl-3xl shadow-inner">
+  <div class="max-w-4xl mx-auto space-y-8">
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <h2 class="text-4xl md:text-5xl font-bold text-primary mb-4 bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
+        Giới thiệu AI HUB EVNGENCO1
+      </h2>
+      <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-blue-700 mx-auto rounded-full"></div>
+    </div>
+
+    <!-- Introduction -->
+    <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8 shadow-lg border border-blue-100">
+      <p class="text-lg text-gray-700 leading-relaxed text-justify">
+        AI Hub EVNGENCO1 là nền tảng trung tâm kết nối thống nhất các dịch vụ AI, được phát triển nhằm phổ cập công nghệ trí tuệ nhân tạo đến toàn bộ cán bộ công nhân viên trong Tổng công ty. Nền tảng cung cấp một cổng truy cập duy nhất, an toàn và thuận tiện cho việc khai thác các công cụ AI hiện đại.
+      </p>
+    </div>
+
+    <!-- Features Section -->
+    <div class="space-y-6">
+      <h3 class="text-2xl font-semibold text-gray-800 text-center mb-8 flex items-center justify-center">
+        <span class="bg-blue-100 p-2 rounded-full mr-3">
+          <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+          </svg>
+        </span>
+        Tính năng chính
+      </h3>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <!-- Feature 1 -->
+        <div class="bg-white rounded-xl p-6 shadow-lg border-l-4 border-blue-500 hover:shadow-xl transition-shadow duration-300">
+          <div class="flex items-start space-x-4">
+            <div class="bg-blue-100 p-3 rounded-full flex-shrink-0">
+              <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+              </svg>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 mb-2">Hệ thống API Gateway tập trung</h4>
+              <p class="text-gray-600 text-sm leading-relaxed">
+                Kết nối an toàn với các dịch vụ AI hàng đầu như ChatGPT và Google Gemini thông qua khóa API được quản lý tập trung
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="bg-white rounded-xl p-6 shadow-lg border-l-4 border-green-500 hover:shadow-xl transition-shadow duration-300">
+          <div class="flex items-start space-x-4">
+            <div class="bg-green-100 p-3 rounded-full flex-shrink-0">
+              <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+              </svg>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 mb-2">Giao diện người dùng thân thiện</h4>
+              <p class="text-gray-600 text-sm leading-relaxed">
+                Ứng dụng web nội bộ cho phép trải nghiệm các công cụ AI một cách trực quan và dễ sử dụng
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="bg-white rounded-xl p-6 shadow-lg border-l-4 border-purple-500 hover:shadow-xl transition-shadow duration-300">
+          <div class="flex items-start space-x-4">
+            <div class="bg-purple-100 p-3 rounded-full flex-shrink-0">
+              <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+              </svg>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 mb-2">Tích hợp mô hình nội bộ</h4>
+              <p class="text-gray-600 text-sm leading-relaxed">
+                Khả năng mở rộng để kết nối các mô hình AI được huấn luyện riêng cho EVNGENCO1
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="bg-white rounded-xl p-6 shadow-lg border-l-4 border-orange-500 hover:shadow-xl transition-shadow duration-300">
+          <div class="flex items-start space-x-4">
+            <div class="bg-orange-100 p-3 rounded-full flex-shrink-0">
+              <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+              </svg>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-800 mb-2">Quản lý tập trung</h4>
+              <p class="text-gray-600 text-sm leading-relaxed">
+                Theo dõi lịch sử sử dụng, kiểm soát chi phí và đảm bảo tuân thủ quy định
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
-    </section>
+    </div>
+
+    <!-- Conclusion -->
+    <div class="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl p-8 text-white shadow-lg">
+      <div class="text-center">
+        <div class="bg-white/20 p-4 rounded-full w-20 h-20 mx-auto mb-4 flex items-center justify-center">
+          <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+          </svg>
+        </div>
+        <h3 class="text-2xl font-bold mb-4">Tương lai của AI tại EVNGENCO1</h3>
+        <p class="text-lg leading-relaxed opacity-90">
+          AI HUB EVNGENCO1 là bước tiến quan trọng trong hành trình chuyển đổi số, giúp Tổng công ty ứng dụng AI một cách hiệu quả, an toàn và phù hợp với đặc thù hoạt động trong lĩnh vực điện lực.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Contact Section -->
     <section id="contact" class="content-section hidden flex-1 overflow-auto p-10 bg-white/80 backdrop-blur-sm rounded-tl-3xl shadow-inner">
