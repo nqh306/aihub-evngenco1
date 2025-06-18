@@ -1,1354 +1,301 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI HUB EVNGENCO1</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 50%, #90CAF9 100%);
-            min-height: 100vh;
-            color: #333;
-        }
-
-        /* Navigation Panel */
-        .nav-panel {
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 300px;
-            height: 100vh;
-            background: linear-gradient(180deg, #2196F3 0%, #1976D2 50%, #1565C0 100%);
-            color: white;
-            z-index: 1000;
-            overflow-y: auto;
-            box-shadow: 4px 0 20px rgba(33, 150, 243, 0.3);
-        }
-
-        /* Logo section - Đã cải thiện để logo nổi bật hơn */
-        .nav-logo {
-            text-align: center;
-            padding: 1.5rem;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            margin-bottom: 0;
-        }
-        
-        .nav-logo img {
-            width: 200px;
-            height: auto;
-            margin-bottom: 0.75rem;
-            background: white;
-            padding: 8px;
-            border-radius: 12px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        
-        .nav-logo h1 {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: white;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            margin-bottom: 0.25rem;
-        }
-        
-        .nav-logo .subtitle {
-            font-size: 0.875rem;
-            color: rgba(255, 255, 255, 0.9);
-            font-weight: 400;
-        }
-
-        .nav-header {
-            padding: 20px;
-            text-align: center;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .nav-header h2 {
-            font-size: 1.2em;
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-
-        .nav-header p {
-            font-size: 0.85em;
-            opacity: 0.8;
-        }
-
-        .nav-menu {
-            padding: 20px 0;
-        }
-
-        .nav-item {
-            display: block;
-            padding: 12px 25px;
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border-left: 3px solid transparent;
-        }
-
-        .nav-item:hover, .nav-item.active {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(187, 222, 251, 0.3));
-            border-left-color: #4FC3F7;
-            transform: translateX(5px);
-            box-shadow: 0 2px 10px rgba(79, 195, 247, 0.4);
-        }
-
-        .nav-item i {
-            margin-right: 10px;
-            width: 20px;
-        }
-
-        .nav-submenu {
-            margin-left: 20px;
-        }
-
-        .nav-submenu .nav-item {
-            padding: 8px 25px;
-            font-size: 0.9em;
-            opacity: 0.9;
-        }
-
-        /* Main Content Area */
-        .main-content {
-            margin-left: 280px;
-            min-height: 100vh; /* Đổi lại thành min-height */
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            overflow-y: auto; /* Cho phép cuộn dọc */
-        }
-
-        .content-section {
-            display: none;
-            padding: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-            width: 100%; /* Thêm dòng này */
-            box-sizing: border-box; /* Thêm dòng này */
-        }
-
-        .content-section.active {
-            display: block;
-        }
-
-        /* Home Page */
-        .home-content {
-            text-align: center;
-            padding: 60px 40px;
-        }
-
-        .logo-container {
-            margin-bottom: 40px;
-        }
-
-        .logo-container img {
-            max-width: 200px;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-
-        .robot-container {
-            margin: 40px 0;
-        }
-
-        .robot-gif {
-            width: 300px;
-            height: 300px;
-            border-radius: 20px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-        }
-
-        .title-section h1 {
-            font-size: 3.5em;
-            color: #0D47A1;
-            margin: 30px 0 20px 0;
-            font-weight: 800;
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
-            background: linear-gradient(135deg, #1976D2, #0288D1, #0277BD);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            position: relative;
-        }
-
-        .title-section h1::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 200px;
-            height: 4px;
-            background: linear-gradient(135deg, #4FC3F7, #29B6F6);
-            border-radius: 2px;
-        }
-
-        .intro-text {
-            font-size: 1.2em;
-            line-height: 1.6;
-            color: #555;
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 8px 30px rgba(33, 150, 243, 0.2);
-            border: 2px solid #E3F2FD;
-        }
-
-        /* Chat AI Module */
-        .chat-container {
-            display: flex;
-            flex-direction: column;
-            height: 80vh;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        .chat-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 20px;
-            text-align: center;
-            position: relative;
-        }
-
-        .chat-header h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-
-        .chat-header p {
-            opacity: 0.9;
-            font-size: 0.9rem;
-        }
-
-        .chat-messages {
-            flex: 1;
-            overflow-y: auto;
-            padding: 20px;
-            background: #fafafa;
-        }
-
-        .message {
-            margin-bottom: 20px;
-            display: flex;
-            align-items: flex-start;
-        }
-
-        .message.user {
-            justify-content: flex-end;
-        }
-
-        .message-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            margin: 0 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            color: white;
-            flex-shrink: 0;
-        }
-
-        .message.ai .message-avatar {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-
-        .message.user .message-avatar {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-        }
-
-        .message-bubble {
-            max-width: 70%;
-            padding: 15px 20px;
-            border-radius: 20px;
-            line-height: 1.5;
-            word-wrap: break-word;
-        }
-
-        .message.ai .message-bubble {
-            background: white;
-            border: 1px solid #e1e5e9;
-            border-radius: 20px 20px 20px 5px;
-        }
-
-        .message.user .message-bubble {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border-radius: 20px 20px 5px 20px;
-        }
-
-        .chat-input-container {
-            background: white;
-            padding: 20px;
-            border-top: 1px solid #e1e5e9;
-        }
-
-        .action-buttons {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-        }
-
-        .action-btn {
-            padding: 8px 16px;
-            border: 1px solid #e1e5e9;
-            background: white;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .action-btn:hover {
-            background: #f8f9fa;
-            border-color: #667eea;
-            color: #667eea;
-        }
-
-        .action-btn.active {
-            background: #667eea;
-            color: white;
-            border-color: #667eea;
-        }
-
-        .chat-input-wrapper {
-            display: flex;
-            align-items: flex-end;
-            gap: 10px;
-            background: #f8f9fa;
-            border: 2px solid #e1e5e9;
-            border-radius: 25px;
-            padding: 8px 15px;
-            transition: border-color 0.3s ease;
-        }
-
-        .chat-input-wrapper:focus-within {
-            border-color: #667eea;
-        }
-
-        .model-selector {
-            background: none;
-            border: none;
-            color: #666;
-            font-size: 0.9rem;
-            cursor: pointer;
-            padding: 5px;
-            border-radius: 5px;
-        }
-
-        .model-selector:hover {
-            background: #e9ecef;
-        }
-
-        .message-input {
-            flex: 1;
-            border: none;
-            outline: none;
-            background: transparent;
-            padding: 10px 5px;
-            font-size: 1rem;
-            resize: none;
-            min-height: 20px;
-            max-height: 120px;
-            font-family: inherit;
-        }
-
-        .send-btn {
-            width: 40px;
-            height: 40px;
-            border: none;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.2s ease;
-            flex-shrink: 0;
-        }
-
-        .send-btn:hover {
-            transform: scale(1.05);
-        }
-
-        .send-btn:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .typing-indicator {
-            display: none;
-            padding: 15px 20px;
-            background: white;
-            border-radius: 20px 20px 20px 5px;
-            border: 1px solid #e1e5e9;
-            max-width: 70%;
-        }
-
-        .typing-dots {
-            display: flex;
-            gap: 4px;
-        }
-
-        .typing-dot {
-            width: 8px;
-            height: 8px;
-            background: #667eea;
-            border-radius: 50%;
-            animation: typing 1.4s infinite;
-        }
-
-        .typing-dot:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .typing-dot:nth-child(3) {
-            animation-delay: 0.4s;
-        }
-
-        @keyframes typing {
-            0%, 60%, 100% {
-                transform: translateY(0);
-            }
-            30% {
-                transform: translateY(-10px);
-            }
-        }
-
-        .welcome-message {
-            text-align: center;
-            padding: 40px 20px;
-            color: #666;
-        }
-
-        .welcome-message h4 {
-            margin-bottom: 10px;
-            color: #333;
-        }
-
-        .suggested-prompts {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .prompt-card {
-            background: white;
-            border: 1px solid #e1e5e9;
-            border-radius: 12px;
-            padding: 15px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .prompt-card:hover {
-            border-color: #667eea;
-            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.1);
-        }
-
-        .prompt-card h5 {
-            color: #333;
-            margin-bottom: 5px;
-            font-size: 0.9rem;
-        }
-
-        .prompt-card p {
-            color: #666;
-            font-size: 0.8rem;
-        }
-
-        @media (max-width: 768px) {
-            .nav-panel {
-                width: 100%;
-                height: auto;
-                position: static; /* Thay đổi từ relative thành static */
-            }
-        
-            .main-content {
-                margin-left: 0;
-                min-height: auto; /* Thêm dòng này */
-            }
-            
-            /* Thêm CSS cho content sections trên mobile */
-            .content-section {
-                padding: 20px;
-            }
-            
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-        
-            .title-section h1 {
-                font-size: 2em;
-            }
-        
-            .robot-gif {
-                width: 200px;
-                height: 200px;
-            }
-        }
-
-        /* Speech Writer Module */
-        .speech-writer {
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 8px 30px rgba(33, 150, 243, 0.2);
-            border: 2px solid #E3F2FD;
-        }
-
-        .speech-writer h2 {
-            color: #0D47A1;
-            margin-bottom: 30px;
-            font-size: 2.2em;
-            text-align: center;
-            font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #333;
-        }
-
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #e9ecef;
-            border-radius: 8px;
-            font-size: 14px;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: #42A5F5;
-            box-shadow: 0 0 15px rgba(66, 165, 245, 0.3);
-            transform: translateY(-1px);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        .generate-btn {
-            background: linear-gradient(135deg, #4FC3F7, #29B6F6, #1E88E5);
-            color: white;
-            border: none;
-            padding: 16px 32px;
-            border-radius: 10px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-            margin: 20px 0;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .generate-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(79, 195, 247, 0.4);
-            background: linear-gradient(135deg, #29B6F6, #1E88E5, #1976D2);
-        }
-
-        .result-area {
-            margin-top: 30px;
-            display: none;
-        }
-
-        .result-area.show {
-            display: block;
-        }
-
-        .result-content {
-            background: #f8f9fa;
-            border: 2px solid #e9ecef;
-            border-radius: 8px;
-            padding: 20px;
-            min-height: 200px;
-            font-family: 'Times New Roman', serif;
-            line-height: 1.6;
-            white-space: pre-wrap;
-        }
-
-        .copy-btn {
-            background: linear-gradient(135deg, #4FC3F7, #29B6F6);
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 8px;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: all 0.3s ease;
-            font-weight: 600;
-        }
-
-        .copy-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(79, 195, 247, 0.4);
-            background: linear-gradient(135deg, #29B6F6, #1E88E5);
-        }
-
-        /* Other sections */
-        .section-title {
-            color: #0D47A1;
-            font-size: 2.5em;
-            margin-bottom: 30px;
-            text-align: center;
-            font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .section-content {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 8px 30px rgba(33, 150, 243, 0.2);
-            line-height: 1.6;
-            border: 2px solid #E3F2FD;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-panel {
-                width: 100%;
-                height: auto;
-                position: relative;
-            }
-
-            .main-content {
-                margin-left: 0;
-            }
-
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-
-            .title-section h1 {
-                font-size: 2em;
-            }
-
-            .robot-gif {
-                width: 200px;
-                height: 200px;
-            }
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .content-section.active {
-            animation: fadeIn 0.5s ease-in-out;
-        }
-        /* Dropdown styles */
-        .nav-dropdown {
-            position: relative;
-        }
-
-        .nav-dropdown-arrow {
-            margin-left: auto;
-            transition: transform 0.3s ease;
-        }
-
-        .nav-dropdown.open .nav-dropdown-arrow {
-            transform: rotate(180deg);
-        }
-
-        .nav-submenu {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-            background-color: transparent;
-            margin: 0;
-            border-radius: 0;
-        }
-
-        .nav-dropdown.open .nav-submenu {
-            max-height: 200px;
-        }
-
-        .nav-submenu .nav-item {
-            padding-left: 45px;
-            margin-bottom: 2px;
-            background-color: rgba(52, 73, 94, 0.3);
-        }
-
-        .nav-submenu .nav-item:hover {
-            background-color: #34495e;
-        }
-
-        .nav-submenu .nav-item:first-child {
-            border-radius: 5px;
-            margin-top: 5px;
-        }
-
-        .nav-submenu .nav-item:last-child {
-            border-radius: 5px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI HUB EVNGENCO1</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#1976D2',
+            secondary: '#0288D1',
+            accent: '#4FC3F7'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
-<body>
-    <!-- Navigation Panel -->
-    <nav class="nav-panel">
-        <div class="nav-header">
-            <div class="nav-logo">
-                <img src="https://file.evngenco1.vn/userfile/images/logo/logo-footer.svg" alt="EVNGENCO1 Logo">
-            </div>
-        
+<body class="font-sans bg-gradient-to-br from-blue-100 via-blue-200 to-blue-300 text-gray-800 min-h-screen">
+
+  <!-- Navigation Panel -->
+  <nav class="fixed inset-y-0 left-0 w-72 bg-gradient-to-b from-primary to-blue-800 text-white shadow-lg overflow-y-auto">
+    <div class="text-center p-6 bg-primary">
+      <div class="inline-block bg-white p-2 rounded-2xl shadow-lg">
+        <img src="https://file.evngenco1.vn/userfile/images/logo/logo-footer.svg" alt="EVNGENCO1 Logo" class="w-40 h-auto" />
+      </div>
+      <h1 class="mt-4 text-2xl font-extrabold">AI HUB EVNGENCO1</h1>
+      <p class="text-sm text-blue-200">Trung tâm AI</p>
+    </div>
+    <div class="px-4 py-6 space-y-1">
+      <a href="#home" class="block nav-item px-6 py-3 rounded-lg border-l-4 border-transparent hover:border-accent hover:bg-white/20 transition transform hover:translate-x-1"><i class="fas fa-home w-5"></i><span class="ml-3">Trang chủ</span></a>
+      <a href="#chat" class="block nav-item px-6 py-3 rounded-lg border-l-4 border-transparent hover:border-accent hover:bg-white/20 transition transform hover:translate-x-1"><i class="fas fa-comments w-5"></i><span class="ml-3">Chat AI</span></a>
+      <div class="relative nav-dropdown">
+        <button id="dropdownToggle" class="w-full flex items-center justify-between px-6 py-3 rounded-lg border-l-4 border-transparent hover:border-accent hover:bg-white/20 transition transform hover:translate-x-1"><div class="flex items-center"><i class="fas fa-users w-5"></i><span class="ml-3">Nhân viên AI</span></div><i class="fas fa-chevron-down nav-dropdown-arrow"></i></button>
+        <div id="dropdownMenu" class="nav-submenu overflow-hidden max-h-0 bg-blue-900 rounded-lg mt-1 transition-all duration-300">
+          <a href="#speech-writer" class="nav-item block px-8 py-2 hover:bg-white/20 transition"><i class="fas fa-microphone w-5 inline-block"></i><span class="ml-2">Viết Bài Phát Biểu</span></a>
         </div>
-        
-        <div class="nav-menu">
-            <a href="#" class="nav-item active" data-section="home">
-                <i class="fas fa-home"></i>
-                Trang chủ
-            </a>
-            <a href="#" class="nav-item" data-section="chat">
-                <i class="fas fa-comments"></i>
-                Chat AI
-            </a>
+      </div>
+      <a href="#other-tools" class="block nav-item px-6 py-3 rounded-lg border-l-4 border-transparent hover:border-accent hover:bg-white/20 transition transform hover:translate-x-1"><i class="fas fa-tools w-5"></i><span class="ml-3">Các Công Cụ AI Khác</span></a>
+      <a href="#about" class="block nav-item px-6 py-3 rounded-lg border-l-4 border-transparent hover:border-accent hover:bg-white/20 transition transform hover:translate-x-1"><i class="fas fa-info-circle w-5"></i><span class="ml-3">Giới thiệu</span></a>
+      <a href="#contact" class="block nav-item px-6 py-3 rounded-lg border-l-4 border-transparent hover:border-accent hover:bg-white/20 transition transform hover:translate-x-1"><i class="fas fa-envelope w-5"></i><span class="ml-3">Liên hệ</span></a>
+    </div>
+  </nav>
 
-            <!-- Dropdown cho Nhân viên AI -->
-            <div class="nav-dropdown">
-                <a href="#" class="nav-item" data-section="ai-staff">
-                    <i class="fas fa-users"></i>
-                    Nhân viên AI
-                    <i class="fas fa-chevron-down nav-dropdown-arrow"></i>
-                </a>
-                <div class="nav-submenu">
-                    <a href="#" class="nav-item" data-section="speech-writer">
-                        <i class="fas fa-microphone"></i>
-                        Viết Bài Phát Biểu
-                    </a>
-                </div>
-            </div>
+  <!-- Main Content -->
+  <main class="ml-72 flex flex-col h-screen overflow-hidden">
 
-            <a href="#" class="nav-item" data-section="other-tools">
-                <i class="fas fa-tools"></i>
-                Các Công Cụ AI Khác
-            </a>
-            <a href="#" class="nav-item" data-section="about">
-                <i class="fas fa-info-circle"></i>
-                Giới thiệu
-            </a>
-            <a href="#" class="nav-item" data-section="contact">
-                <i class="fas fa-envelope"></i>
-                Liên hệ
-            </a>
+    <!-- Home Section -->
+    <section id="home" class="content-section active flex-1 overflow-auto p-10 bg-white/80 backdrop-blur-sm rounded-tl-3xl shadow-inner">
+      <div class="max-w-4xl mx-auto text-center space-y-8">
+        <img src="https://assets-v2.lottiefiles.com/a/97fc9faa-117f-11ee-a3b3-5fb6ab9865dc/vR6mwrGRsr.gif" alt="Dancing Robot" class="w-64 h-64 mx-auto rounded-xl shadow-2xl" />
+        <div class="bg-white p-8 rounded-2xl shadow-lg space-y-4">
+          <p>Chào mừng bạn đến với <strong>AI HUB EVNGENCO1</strong> - trung tâm trí tuệ nhân tạo của chúng tôi!</p>
+          <p>Đây là nền tảng tập trung các công cụ AI tiên tiến, được thiết kế nhằm:</p>
+          <p>🤖 <strong>Phổ cập AI</strong> - Đưa công nghệ AI đến gần hơn với mọi người</p>
+          <p>⚡ <strong>Khai thác dễ dàng</strong> - Giao diện thân thiện, sử dụng đơn giản</p>
+          <p>🎯 <strong>Quản lý tập trung</strong> - Tất cả công cụ AI trong một nền tảng duy nhất</p>
+          <p>Hãy khám phá các tính năng mạnh mẽ của chúng tôi và trải nghiệm tương lai của công nghệ!</p>
         </div>
-    </nav>
-
-    <!-- Main Content Area -->
-    <main class="main-content">
-        <!-- Home Page -->
-        <section id="home" class="content-section active">
-            <div class="home-content">
-                <div class="robot-container">
-                    <img src="https://assets-v2.lottiefiles.com/a/97fc9faa-117f-11ee-a3b3-5fb6ab9865dc/vR6mwrGRsr.gif" 
-                         alt="Dancing Robot" class="robot-gif">
-                </div>
-
-                <div class="title-section">
-                    <div class="intro-text">
-                        <p>Chào mừng bạn đến với <strong>AI HUB EVNGENCO1</strong> - trung tâm trí tuệ nhân tạo của chúng tôi!</p>
-                        <br>
-                        <p>Đây là nền tảng tập trung các công cụ AI tiên tiến, được thiết kế nhằm:</p>
-                        <br>
-                        <p>🤖 <strong>Phổ cập AI</strong> - Đưa công nghệ AI đến gần hơn với mọi người</p>
-                        <p>⚡ <strong>Khai thác dễ dàng</strong> - Giao diện thân thiện, sử dụng đơn giản</p>
-                        <p>🎯 <strong>Quản lý tập trung</strong> - Tất cả công cụ AI trong một nền tảng duy nhất</p>
-                        <br>
-                        <p>Hãy khám phá các tính năng mạnh mẽ của chúng tôi và trải nghiệm tương lai của công nghệ!</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Chat AI Module -->
-        <section id="chat" class="content-section">
-        <h2 class="section-title">Chat AI</h2>
-        <div class="chat-container">
-            <div class="chat-header">
-                <h3>Trợ lý AI EVNGENCO1</h3>
-                <p>Được hỗ trợ bởi các mô hình AI tiên tiến</p>
-            </div>
-            
-            <div class="chat-messages" id="chatMessages">
-                <div class="welcome-message">
-                    <h4>Xin chào! Tôi là trợ lý AI của EVNGENCO1 👋</h4>
-                    <p>Tôi có thể giúp gì cho bạn? Hãy bắt đầu cuộc trò chuyện!</p>
-                </div>
-            </div>
-            
-            <div class="chat-input-container">
-                <div class="action-buttons">
-                    <button class="action-btn" onclick="toggleAction('research')">
-                        <i class="fas fa-search"></i>
-                        Deep Research
-                    </button>
-                    <button class="action-btn" onclick="toggleAction('analysis')">
-                        <i class="fas fa-chart-line"></i>
-                        Phân tích dữ liệu
-                    </button>
-                    <button class="action-btn" onclick="toggleAction('creative')">
-                        <i class="fas fa-lightbulb"></i>
-                        Sáng tạo
-                    </button>
-                    <button class="action-btn" onclick="toggleAction('coding')">
-                        <i class="fas fa-code"></i>
-                        Lập trình
-                    </button>
-                    <button class="action-btn" onclick="clearChat()">
-                        <i class="fas fa-trash"></i>
-                        Xóa chat
-                    </button>
-                </div>
-                
-                <div class="chat-input-wrapper">
-                    <select class="model-selector" id="aiModel">
-                        <option value="chatgpt">GPT-4</option>
-                        <option value="claude">Claude</option>
-                        <option value="gemini">Gemini</option>
-                        <option value="internal" disabled>AI nội bộ (Sắp ra mắt)</option>
-                    </select>
-                    
-                    <textarea 
-                        class="message-input" 
-                        id="messageInput" 
-                        placeholder="Nhập tin nhắn của bạn..." 
-                        rows="1"
-                        onkeypress="handleKeyPress(event)"
-                        oninput="adjustTextareaHeight(this)"
-                    ></textarea>
-                    
-                    <button class="send-btn" onclick="sendMessage()" id="sendBtn">
-                        <i class="fas fa-paper-plane"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
+      </div>
     </section>
 
+    <!-- Chat AI Section -->
+    <section id="chat" class="content-section hidden flex-1 overflow-auto p-8 bg-white/80 backdrop-blur-sm rounded-tl-3xl shadow-inner">
+      <h2 class="text-3xl font-bold text-primary text-center mb-6">Chat AI</h2>
+      <div class="flex flex-col h-[80vh] bg-white rounded-2xl shadow-xl overflow-hidden">
+        <div class="bg-gradient-to-r from-secondary to-primary text-white p-4">
+          <h3 class="text-xl font-semibold">Trợ lý AI EVNGENCO1</h3>
+          <p class="text-sm opacity-90">Được hỗ trợ bởi các mô hình AI tiên tiến</p>
+        </div>
+        <div id="chatMessages" class="flex-1 p-4 overflow-y-auto space-y-4">
+          <div class="welcome-message text-center text-gray-500">
+            <h4 class="font-medium">Xin chào! Tôi là trợ lý AI của EVNGENCO1 👋</h4>
+            <p>Tôi có thể giúp gì cho bạn? Hãy bắt đầu cuộc trò chuyện!</p>
+          </div>
+        </div>
+        <div class="p-4 border-t border-gray-200">
+          <div class="flex flex-wrap gap-2 mb-3">
+            <button class="action-btn px-3 py-1 border rounded-full text-sm flex items-center gap-1 hover:bg-gray-100" onclick="toggleAction('research')"><i class="fas fa-search"></i> Deep Research</button>
+            <button class="action-btn px-3 py-1 border rounded-full text-sm flex items-center gap-1 hover:bg-gray-100" onclick="toggleAction('analysis')"><i class="fas fa-chart-line"></i> Phân tích</button>
+            <button class="action-btn px-3 py-1 border rounded-full text-sm flex items-center gap-1 hover:bg-gray-100" onclick="toggleAction('creative')"><i class="fas fa-lightbulb"></i> Sáng tạo</button>
+            <button class="action-btn px-3 py-1 border rounded-full text-sm flex items-center gap-1 hover:bg-gray-100" onclick="toggleAction('coding')"><i class="fas fa-code"></i> Lập trình</button>
+            <button class="action-btn px-3 py-1 border rounded-full text-sm flex items-center gap-1 hover:bg-gray-100" onclick="clearChat()"><i class="fas fa-trash"></i> Xóa chat</button>
+          </div>
+          <div class="flex items-end gap-2">
+            <!-- Model Selector -->
+            <select id="aiModel" class="border rounded-lg px-2 py-1 focus:ring-2 focus:ring-accent">
+              <option value="chatgpt">GPT-4</option>
+              <option value="claude">Claude</option>
+              <option value="gemini">Gemini</option>
+              <option value="internal" disabled>AI nội bộ</option>
+            </select>
+            <!-- Attach File Button -->
+            <button id="attachBtn" type="button" class="w-10 h-10 flex items-center justify-center border rounded-full hover:bg-gray-100 transition">
+              <i class="fas fa-paperclip text-gray-600"></i>
+              <input id="fileInput" type="file" class="hidden" onchange="handleFileSelect(event)" />
+            </button>
+            
+            <!-- Message Input -->
+            <textarea id="messageInput" rows="1" placeholder="Nhập tin nhắn của bạn..." class="message-input flex-1 border rounded-2xl px-4 py-2 focus:ring-2 focus:ring-accent resize-none" oninput="adjustTextareaHeight(this)" onkeypress="handleKeyPress(event)"></textarea>
+            <!-- Send Button -->
+            <button id="sendBtn" type="button" class="send-btn w-10 h-10 bg-gradient-to-r from-secondary to-primary text-white rounded-full shadow-md flex items-center justify-center transition" onclick="sendMessage()">
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <!-- Speech Writer Module -->
-        <section id="speech-writer" class="content-section">
-            <div class="speech-writer">
-                <h2>Viết Bài Phát Biểu Cho Lãnh Đạo</h2>
-                
-                <form id="speechForm">
-                    <div class="form-group">
-                            <label for="tone">Bài phát biểu cho Lãnh đạo:</label>
-                            <select id="tone">
-                                <option value="formal">Nguyễn Tiến Khoa - CTHĐTV</option>
-                                <option value="friendly">Lê Hải Đăng - TGĐ</option>
-                            </select>
-                        </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="topic">Chủ đề bài phát biểu:</label>
-                            <input type="text" id="topic" placeholder="Ví dụ: Khai trương dự án điện mặt trời">
-                        </div>
-                        <div class="form-group">
-                            <label for="audience">Đối tượng lắng nghe:</label>
-                            <input type="text" id="audience" placeholder="Ví dụ: Nhân viên, đối tác, khách hàng">
-                        </div>
-                    </div>
+    <!-- Speech Writer Section -->
+    <section id="speech-writer" class="content-section hidden flex-1 overflow-auto p-8 bg-white/80 backdrop-blur-sm rounded-tl-3xl shadow-inner">
+  <h2 class="text-3xl font-bold text-primary text-center mb-6">Viết Bài Phát Biểu Cho Lãnh Đạo</h2>
+  <div class="max-w-3xl mx-auto bg-white p-8 rounded-2xl shadow-xl">
+    <form id="speechForm" class="space-y-6">
+      <div>
+        <label for="leader" class="block text-sm font-medium">Lãnh đạo</label>
+        <select id="leader" class="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-accent">
+          <option>Nguyễn Tiến Khoa - CTHĐTV</option>
+          <option>Lê Hải Đăng - TGĐ</option>
+        </select>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label for="topic" class="block text-sm font-medium">Chủ đề</label>
+          <input id="topic" type="text" placeholder="Ví dụ: Khai trương dự án điện mặt trời" class="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-accent" />
+        </div>
+        <div>
+          <label for="audience" class="block text-sm font-medium">Đối tượng</label>
+          <input id="audience" type="text" placeholder="Ví dụ: Nhân viên, đối tác" class="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-accent" />
+        </div>
+      </div>
+      <div>
+        <label for="purpose" class="block text-sm font-medium">Mục đích</label>
+        <textarea id="purpose" rows="3" class="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-accent" placeholder="Mục đích và thông điệp chính"></textarea>
+      </div>
+      <div>
+        <label for="keyPoints" class="block text-sm font-medium">Các ý chính</label>
+        <textarea id="keyPoints" rows="4" class="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-accent" placeholder="• Điểm 1
+• Điểm 2
+• Điểm 3"></textarea>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label for="tone" class="block text-sm font-medium">Ngữ điệu</label>
+          <select id="tone" class="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-accent">
+            <option>Trang trọng</option>
+            <option>Thân mật</option>
+            <option>Hùng hồn</option>
+            <option>Chuyên nghiệp</option>
+            <option>Thoải mái</option>
+          </select>
+        </div>
+        <div>
+          <label for="length" class="block text-sm font-medium">Độ dài</label>
+          <input id="length" type="text" placeholder="Ví dụ: 5 phút, 500 từ" class="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-accent" />
+        </div>
+      </div>
+      <button type="button" onclick="generateSpeech()" class="w-full bg-gradient-to-r from-secondary to-primary text-white py-3 rounded-2xl font-semibold hover:opacity-90 transition shadow-md flex items-center justify-center gap-2">
+        <i class="fas fa-magic"></i>
+        Tạo Bài Phát Biểu
+      </button>
+    </form>
+    <div id="resultArea" class="mt-6 hidden bg-white p-4 rounded-lg border border-gray-200 shadow-inner">
+      <h4 class="font-medium mb-2">Bài phát biểu đã tạo:</h4>
+      <div id="resultContent" class="whitespace-pre-wrap text-gray-800"></div>
+      <button onclick="copyToClipboard()" class="mt-4 bg-gradient-to-r from-accent to-secondary text-white px-4 py-2 rounded-lg hover:opacity-90 transition flex items-center gap-2">
+        <i class="fas fa-copy"></i>
+        Sao chép
+      </button>
+    </div>
+  </div>
+</section>
 
-                    <div class="form-group">
-                        <label for="purpose">Mục đích bài phát biểu:</label>
-                        <textarea id="purpose" placeholder="Mô tả mục đích và thông điệp chính bạn muốn truyền tải..."></textarea>
-                    </div>
+    <!-- AI Staff Section -->
+    <section id="ai-staff" class="content-section hidden flex-1 overflow-auto p-8 bg-white/80 backdrop-blur-sm rounded-tl-3xl shadow-inner">
+  <h2 class="text-3xl font-bold text-primary text-center mb-6">Nhân viên AI</h2>
+  <div class="max-w-3xl mx-auto bg-white p-8 rounded-2xl shadow-xl space-y-6">
+    <p class="text-gray-700">Chào mừng bạn đến với bộ phận <strong>Nhân viên AI</strong> của EVNGENCO1! Dưới đây là các trợ lý ảo sẵn sàng hỗ trợ bạn:</p>
+    <ul class="list-disc pl-5 space-y-3">
+      <li><strong>Viết Bài Phát Biểu:</strong> Hỗ trợ soạn thảo bài phát biểu chuyên nghiệp, phù hợp với phong cách lãnh đạo.</li>
+      <li><strong>Thư ký AI:</strong> (Sắp ra mắt) Tự động ghi chú, lên lịch và nhắc việc trong các cuộc họp.</li>
+      <li><strong>Chuyên viên Marketing AI:</strong> (Sắp ra mắt) Tạo nội dung quảng cáo, bài đăng mạng xã hội và email marketing.</li>
+      <li><strong>Kỹ sư AI:</strong> (Sắp ra mắt) Hỗ trợ phát triển, kiểm thử và triển khai các giải pháp AI.</li>
+    </ul>
+    <p class="text-gray-700">Hãy chọn một trợ lý AI từ menu <em>Nhân viên AI</em> để bắt đầu!</p>
+  </div>
+</section>
 
-                    <div class="form-group">
-                        <label for="keyPoints">Các ý chính cần đề cập:</label>
-                        <textarea id="keyPoints" placeholder="• Điểm 1: ...&#10;• Điểm 2: ...&#10;• Điểm 3: ..."></textarea>
-                    </div>
+    <!-- Other Tools Section -->
+    <section id="other-tools" class="content-section hidden flex-1 overflow-auto p-8 bg-white/80 backdrop-blur-sm rounded-tl-3xl shadow-inner">
+  <h2 class="text-3xl font-bold text-primary text-center mb-6">Các Công Cụ AI Khác</h2>
+  <div class="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="bg-white p-6 rounded-2xl shadow-xl hover:shadow-2xl transition">
+      <i class="fas fa-image w-10 h-10 mx-auto text-accent"></i>
+      <h3 class="mt-4 text-xl font-semibold text-center">Tạo Ảnh</h3>
+      <p class="mt-2 text-center text-gray-600">Sinh ảnh AI từ mô tả văn bản.</p>
+    </div>
+    <div class="bg-white p-6 rounded-2xl shadow-xl hover:shadow-2xl transition">
+      <i class="fas fa-language w-10 h-10 mx-auto text-accent"></i>
+      <h3 class="mt-4 text-xl font-semibold text-center">Dịch Thuật</h3>
+      <p class="mt-2 text-center text-gray-600">Dịch thuật tự động sang nhiều ngôn ngữ.</p>
+    </div>
+    <div class="bg-white p-6 rounded-2xl shadow-xl hover:shadow-2xl transition">
+      <i class="fas fa-chart-line w-10 h-10 mx-auto text-accent"></i>
+      <h3 class="mt-4 text-xl font-semibold text-center">Phân tích Dữ liệu</h3>
+      <p class="mt-2 text-center text-gray-600">Trực quan hóa và phân tích dữ liệu doanh nghiệp.</p>
+    </div>
+    <div class="bg-white p-6 rounded-2xl shadow-xl hover:shadow-2xl transition">
+      <i class="fas fa-file-alt w-10 h-10 mx-auto text-accent"></i>
+      <h3 class="mt-4 text-xl font-semibold text-center">Tổng hợp Văn Bản</h3>
+      <p class="mt-2 text-center text-gray-600">Tóm tắt và tổng hợp tài liệu dài.</p>
+    </div>
+    <div class="bg-white p-6 rounded-2xl shadow-xl hover:shadow-2xl transition">
+      <i class="fas fa-chart-pie w-10 h-10 mx-auto text-accent"></i>
+      <h3 class="mt-4 text-xl font-semibold text-center">Dự Báo Xu Hướng</h3>
+      <p class="mt-2 text-center text-gray-600">Phân tích và dự báo xu hướng thị trường.</p>
+    </div>
+  </div>
+  <p class="mt-8 text-center text-gray-700">Chọn công cụ hoặc chờ cập nhật thêm các tính năng mới!</p>
+</section>
 
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="tone">Ngữ điệu mong muốn:</label>
-                            <select id="tone">
-                                <option value="formal">Trang trọng</option>
-                                <option value="friendly">Thân mật</option>
-                                <option value="inspiring">Hùng hồn</option>
-                                <option value="professional">Chuyên nghiệp</option>
-                                <option value="casual">Thoải mái</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="length">Độ dài mong muốn:</label>
-                            <input type="text" id="length" placeholder="Ví dụ: 5 phút, 500 từ, ngắn gọn">
-                        </div>
-                    </div>
+    <!-- About Section -->
+    <section id="about" class="content-section hidden flex-1 overflow-auto p-10 bg-white/80 backdrop-blur-sm rounded-tl-3xl shadow-inner">
+      <div class="max-w-3xl mx-auto space-y-6 text-center">
+        <h2 class="text-4xl font-bold text-primary">Về Chúng Tôi</h2>
+        <p>AI HUB EVNGENCO1 là trung tâm tập trung mọi giải pháp trí tuệ nhân tạo, hỗ trợ tự động hoá và tối ưu hoá hoạt động trong lĩnh vực điện lực.</p>
+        <p>Với sứ mệnh kết nối con người và công nghệ, chúng tôi cam kết mang lại hiệu quả và đổi mới liên tục cho EVNGENCO1.</p>
+        <p>Đội ngũ chuyên gia giàu kinh nghiệm, kết hợp cùng công nghệ tiên tiến, luôn sẵn sàng đồng hành cùng doanh nghiệp trên hành trình chuyển đổi số.</p>
+      </div>
+    </section>
 
-                    <button type="button" class="generate-btn" onclick="generateSpeech()">
-                        <i class="fas fa-magic"></i>
-                        Tạo Bài Phát Biểu
-                    </button>
-                </form>
+    <!-- Contact Section -->
+    <section id="contact" class="content-section hidden flex-1 overflow-auto p-10 bg-white/80 backdrop-blur-sm rounded-tl-3xl shadow-inner">
+      <div class="max-w-2xl mx-auto">
+        <h2 class="text-4xl font-bold text-primary text-center mb-6">Liên Hệ</h2>
+        <form class="space-y-6 bg-white p-8 rounded-2xl shadow-xl">
+          <div>
+            <label class="block text-sm font-medium">Họ và tên</label>
+            <input type="text" class="mt-1 w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-accent" placeholder="Nguyễn Văn A" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium">Email</label>
+            <input type="email" class="mt-1 w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-accent" placeholder="example@evngenco1.vn" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium">Số điện thoại</label>
+            <input type="tel" class="mt-1 w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-accent" placeholder="0123 456 789" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium">Nội dung</label>
+            <textarea rows="5" class="mt-1 w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-accent" placeholder="Bạn cần hỗ trợ gì?"></textarea>
+          </div>
+          <button type="submit" class="w-full bg-gradient-to-r from-secondary to-primary text-white py-3 rounded-2xl font-semibold hover:opacity-90 transition shadow-md">Gửi Thông Tin</button>
+        </form>
+      </div>
+    </section>
 
-                <div class="result-area" id="resultArea">
-                    <div class="form-group">
-                        <label>Bài phát biểu đã tạo:</label>
-                        <div class="result-content" id="resultContent"></div>
-                        <button type="button" class="copy-btn" onclick="copyToClipboard()">
-                            <i class="fas fa-copy"></i>
-                            Sao chép
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
+  </main>
 
-        <!-- AI Staff Section -->
-        <section id="ai-staff" class="content-section">
-            <h2 class="section-title">Nhân viên AI</h2>
-            <div class="section-content">
-                <p>Chào mừng bạn đến với bộ phận <strong>Nhân viên AI</strong> - đội ngũ trợ lý ảo chuyên nghiệp của EVNGENCO1!</p>
-                <br>
-                <p>Các nhân viên AI của chúng tôi được thiết kế để hỗ trợ bạn trong nhiều công việc khác nhau:</p>
-                <ul style="margin: 20px 0; padding-left: 20px;">
-                    <li><strong>Viết Bài Phát Biểu:</strong> Trợ lý chuyên nghiệp giúp tạo ra các bài phát biểu ấn tượng cho lãnh đạo</li>
-                    <li><strong>Thư ký AI:</strong> (Sắp ra mắt) - Hỗ trợ lập kế hoạch và quản lý công việc</li>
-                    <li><strong>Chuyên viên Marketing AI:</strong> (Sắp ra mắt) - Tạo nội dung marketing sáng tạo</li>
-                    <li><strong>Kỹ sư AI:</strong> (Sắp ra mắt) - Hỗ trợ giải quyết các vấn đề kỹ thuật</li>
-                </ul>
-                <p>Hãy lựa chọn nhân viên AI phù hợp từ menu để bắt đầu làm việc!</p>
-            </div>
-        </section>
-        <section id="other-tools" class="content-section">
-            <h2 class="section-title">Các Công Cụ AI Khác</h2>
-            <div class="section-content">
-                <p>Khu vực này sẽ được mở rộng với nhiều công cụ AI khác trong tương lai như:</p>
-                <ul style="margin: 20px 0; padding-left: 20px;">
-                    <li>Tạo hình ảnh bằng AI</li>
-                    <li>Phân tích dữ liệu thông minh</li>
-                    <li>Dịch thuật tự động</li>
-                    <li>Tổng hợp văn bản</li>
-                    <li>Và nhiều tính năng khác...</li>
-                </ul>
-                <p>Vui lòng theo dõi để cập nhật các tính năng mới!</p>
-            </div>
-        </section>
+  <!-- Scripts -->
+  <script>
+    // Navigation & Dropdown
+    const sections = document.querySelectorAll('.content-section');
+    const navItems = document.querySelectorAll('.nav-item');
+    navItems.forEach(item => {
+      item.addEventListener('click', e => {
+        e.preventDefault();
+        const target = item.getAttribute('href').substring(1);
+        sections.forEach(sec => sec.classList.add('hidden'));
+        document.getElementById(target).classList.remove('hidden');
+      });
+    });
+    // Dropdown toggle
+    const dropdownToggle = document.getElementById('dropdownToggle');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+    dropdownToggle.addEventListener('click', () => {
+      dropdownMenu.classList.toggle('max-h-40');
+    });
 
-        <!-- About Us -->
-        <section id="about" class="content-section">
-            <h2 class="section-title">Giới thiệu</h2>
-            <div class="section-content">
-                <p><strong>AI Hub EVNGENCO1</strong> là nền tảng tích hợp các công cụ trí tuệ nhân tạo tiên tiến, được phát triển bởi đội ngũ kỹ thuật EVNGENCO1.</p>
-                <br>
-                <p>Sứ mệnh của chúng tôi là đưa công nghệ AI đến gần hơn với người dùng, giúp nâng cao hiệu quả công việc và sáng tạo trong mọi lĩnh vực hoạt động của công ty.</p>
-                <br>
-                <p>Với giao diện thân thiện và dễ sử dụng, AI HUB cam kết mang đến trải nghiệm tốt nhất cho người dùng trong việc khai thác sức mạnh của trí tuệ nhân tạo.</p>
-            </div>
-        </section>
+    // Attach file logic
+    document.getElementById('attachBtn').addEventListener('click', () => document.getElementById('fileInput').click());
+    function handleFileSelect(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const msgContainer = document.getElementById('chatMessages');
+        const fileMsg = document.createElement('div');
+        fileMsg.className = 'p-2 bg-gray-100 rounded-lg max-w-xs';
+        fileMsg.textContent = `Đã chọn file: ${file.name}`;
+        msgContainer.appendChild(fileMsg);
+        msgContainer.scrollTop = msgContainer.scrollHeight;
+      }
+    }
+  </script>
 
-        <!-- Contact -->
-        <section id="contact" class="content-section">
-            <h2 class="section-title">Liên hệ</h2>
-            <div class="section-content">
-                <p>Để được hỗ trợ hoặc đóng góp ý kiến về AI Hub EVNGENCO1, vui lòng liên hệ:</p>
-                <br>
-                <p><strong>Email:</strong> admin@evngenco1.vn</p>
-                <p><strong>Điện thoại:</strong> (024) 7308 9789</p>
-                <p><strong>Địa chỉ:</strong> Toà nhà Thái Nam, 22 Dương Đình Nghệ, phường Yên Hoà, quận Cầu Giấy, Hà Nội</p>
-                <br>
-                <p>Chúng tôi luôn sẵn sàng lắng nghe và hỗ trợ bạn!</p>
-            </div>
-        </section>
-    </main>
-
-    <script>
-        // Navigation functionality
-        document.querySelectorAll('.nav-item').forEach(item => {
-            item.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                // Remove active class from all nav items
-                document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
-                // Add active class to clicked item
-                this.classList.add('active');
-                
-                // Hide all content sections
-                document.querySelectorAll('.content-section').forEach(section => section.classList.remove('active'));
-                
-                // Show selected section
-                const sectionId = this.getAttribute('data-section');
-                document.getElementById(sectionId).classList.add('active');
-            });
-        });
-
-        // Chat functionality
-        function sendMessage() {
-            const input = document.getElementById('messageInput');
-            const message = input.value.trim();
-            
-            if (message === '') return;
-            
-            const chatMessages = document.getElementById('chatMessages');
-            const aiModel = document.getElementById('aiModel').value;
-            
-            // Add user message
-            const userMessage = document.createElement('div');
-            userMessage.className = 'message user';
-            userMessage.innerHTML = `<div class="message-bubble">${message}</div>`;
-            chatMessages.appendChild(userMessage);
-            
-            // Clear input
-            input.value = '';
-            
-            // Simulate AI response
-            setTimeout(() => {
-                const aiMessage = document.createElement('div');
-                aiMessage.className = 'message ai';
-                aiMessage.innerHTML = `<div class="message-bubble">Đây là phản hồi mô phỏng từ ${aiModel.toUpperCase()}. Tính năng này sẽ được tích hợp với API thực tế trong phiên bản tiếp theo.</div>`;
-                chatMessages.appendChild(aiMessage);
-                
-                // Scroll to bottom
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-            }, 1000);
-            
-            // Scroll to bottom
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-
-        // Allow Enter key to send message
-        document.getElementById('messageInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                sendMessage();
-            }
-        });
-
-        // Speech Writer functionality
-        function generateSpeech() {
-            const topic = document.getElementById('topic').value;
-            const audience = document.getElementById('audience').value;
-            const purpose = document.getElementById('purpose').value;
-            const keyPoints = document.getElementById('keyPoints').value;
-            const tone = document.getElementById('tone').value;
-            const length = document.getElementById('length').value;
-            
-            if (!topic || !audience || !purpose) {
-                alert('Vui lòng điền đầy đủ thông tin cơ bản (Chủ đề, Đối tượng, Mục đích)');
-                return;
-            }
-            
-            // Simulate speech generation
-            const resultArea = document.getElementById('resultArea');
-            const resultContent = document.getElementById('resultContent');
-            
-            // Show loading
-            resultContent.innerHTML = 'Đang tạo bài phát biểu...';
-            resultArea.classList.add('show');
-            
-            setTimeout(() => {
-                const sampleSpeech = `Kính thưa ${audience},
-
-Hôm nay, tôi vinh dự được đứng trước quý vị để nói về ${topic}.
-
-${purpose}
-
-Qua ${keyPoints.replace(/•/g, '\n•')}
-
-Tôi tin rằng với sự đoàn kết và nỗ lực của tất cả chúng ta, chúng ta sẽ đạt được những mục tiêu đã đề ra.
-
-Xin chân thành cảm ơn sự quan tâm và lắng nghe của quý vị!
-
----
-(Đây là bài phát biểu mẫu được tạo tự động. Trong phiên bản thực tế, nội dung sẽ được tạo bởi AI với chất lượng cao hơn)`;
-                
-                resultContent.innerHTML = sampleSpeech;
-            }, 2000);
-        }
-
-        // Copy to clipboard functionality
-        function copyToClipboard() {
-            const resultContent = document.getElementById('resultContent');
-            const text = resultContent.innerText;
-            
-            navigator.clipboard.writeText(text).then(() => {
-                alert('Đã sao chép bài phát biểu vào clipboard!');
-            }).catch(() => {
-                // Fallback for older browsers
-                const textArea = document.createElement('textarea');
-                textArea.value = text;
-                document.body.appendChild(textArea);
-                textArea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textArea);
-                alert('Đã sao chép bài phát biểu vào clipboard!');
-            });
-        }
-        // JavaScript để xử lý dropdown
-        document.addEventListener('DOMContentLoaded', function() {
-            const dropdown = document.querySelector('.nav-dropdown');
-            const dropdownToggle = dropdown.querySelector('.nav-item[data-section="ai-staff"]');
-            
-            // Xử lý click để toggle dropdown
-            dropdownToggle.addEventListener('click', function(e) {
-                e.preventDefault();
-                dropdown.classList.toggle('open');
-            });
-
-            // Xử lý hover (tùy chọn - bỏ comment nếu muốn dùng hover thay vì click)
-            /*
-            dropdown.addEventListener('mouseenter', function() {
-                dropdown.classList.add('open');
-            });
-            
-            dropdown.addEventListener('mouseleave', function() {
-                dropdown.classList.remove('open');
-            });
-            */
-            
-            // Xử lý click cho các nav items khác
-            const navItems = document.querySelectorAll('.nav-item:not([data-section="ai-staff"])');
-            navItems.forEach(item => {
-                item.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    // Remove active class from all items
-                    document.querySelectorAll('.nav-item').forEach(navItem => {
-                        navItem.classList.remove('active');
-                    });
-                    
-                    // Add active class to clicked item
-                    this.classList.add('active');
-                    
-                    // Close dropdown if open
-                    dropdown.classList.remove('open');
-                    
-                    console.log('Navigating to:', this.dataset.section);
-                });
-            });
-        });
-
-        // CHAT AI
-        let currentMode = null;
-        let isTyping = false;
-
-        function toggleAction(mode) {
-            const buttons = document.querySelectorAll('.action-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-            
-            if (currentMode === mode) {
-                currentMode = null;
-            } else {
-                currentMode = mode;
-                event.target.closest('.action-btn').classList.add('active');
-            }
-            
-            updatePlaceholder();
-        }
-
-        function updatePlaceholder() {
-            const input = document.getElementById('messageInput');
-            const placeholders = {
-                research: 'Đặt câu hỏi để nghiên cứu sâu...',
-                analysis: 'Yêu cầu phân tích dữ liệu...',
-                creative: 'Mô tả ý tưởng sáng tạo của bạn...',
-                coding: 'Mô tả chức năng cần lập trình...',
-                default: 'Nhập tin nhắn của bạn...'
-            };
-            
-            input.placeholder = placeholders[currentMode] || placeholders.default;
-        }
-
-        function usePrompt(prompt) {
-            document.getElementById('messageInput').value = prompt;
-            sendMessage();
-        }
-
-        function adjustTextareaHeight(textarea) {
-            textarea.style.height = 'auto';
-            textarea.style.height = Math.min(textarea.scrollHeight, 120) + 'px';
-        }
-
-        function handleKeyPress(event) {
-            if (event.key === 'Enter' && !event.shiftKey) {
-                event.preventDefault();
-                sendMessage();
-            }
-        }
-
-        function sendMessage() {
-            const input = document.getElementById('messageInput');
-            const message = input.value.trim();
-            
-            if (!message || isTyping) return;
-            
-            // Add user message
-            addMessage(message, 'user');
-            input.value = '';
-            input.style.height = 'auto';
-            
-            // Show typing indicator
-            showTypingIndicator();
-            
-            // Simulate AI response
-            setTimeout(() => {
-                hideTypingIndicator();
-                const aiResponse = generateAIResponse(message);
-                addMessage(aiResponse, 'ai');
-            }, 1500 + Math.random() * 1000);
-        }
-
-        function addMessage(text, sender) {
-            const messagesContainer = document.getElementById('chatMessages');
-            const welcomeMessage = messagesContainer.querySelector('.welcome-message');
-            
-            if (welcomeMessage) {
-                welcomeMessage.remove();
-            }
-            
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${sender}`;
-            
-            const avatar = document.createElement('div');
-            avatar.className = 'message-avatar';
-            avatar.innerHTML = sender === 'ai' ? '<i class="fas fa-robot"></i>' : '<i class="fas fa-user"></i>';
-            
-            const bubble = document.createElement('div');
-            bubble.className = 'message-bubble';
-            bubble.textContent = text;
-            
-            if (sender === 'user') {
-                messageDiv.appendChild(bubble);
-                messageDiv.appendChild(avatar);
-            } else {
-                messageDiv.appendChild(avatar);
-                messageDiv.appendChild(bubble);
-            }
-            
-            messagesContainer.appendChild(messageDiv);
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-        }
-
-        function showTypingIndicator() {
-            const messagesContainer = document.getElementById('chatMessages');
-            const typingDiv = document.createElement('div');
-            typingDiv.className = 'message ai';
-            typingDiv.id = 'typingIndicator';
-            
-            const avatar = document.createElement('div');
-            avatar.className = 'message-avatar';
-            avatar.innerHTML = '<i class="fas fa-robot"></i>';
-            
-            const typingBubble = document.createElement('div');
-            typingBubble.className = 'typing-indicator';
-            typingBubble.style.display = 'block';
-            typingBubble.innerHTML = `
-                <div class="typing-dots">
-                    <div class="typing-dot"></div>
-                    <div class="typing-dot"></div>
-                    <div class="typing-dot"></div>
-                </div>
-            `;
-            
-            typingDiv.appendChild(avatar);
-            typingDiv.appendChild(typingBubble);
-            messagesContainer.appendChild(typingDiv);
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-            
-            isTyping = true;
-        }
-
-        function hideTypingIndicator() {
-            const typingIndicator = document.getElementById('typingIndicator');
-            if (typingIndicator) {
-                typingIndicator.remove();
-            }
-            isTyping = false;
-        }
-
-        function generateAIResponse(userMessage) {
-            const responses = {
-                research: "Tôi sẽ thực hiện nghiên cứu sâu về chủ đề này. Hãy cho tôi một chút thời gian để thu thập và phân tích thông tin từ nhiều nguồn khác nhau...",
-                analysis: "Dựa trên dữ liệu bạn cung cấp, tôi sẽ thực hiện phân tích chi tiết. Tôi có thể tạo biểu đồ, báo cáo và đưa ra những insight hữu ích...",
-                creative: "Đây là một ý tưởng sáng tạo thú vị! Tôi sẽ giúp bạn phát triển ý tưởng này với những góc nhìn mới và độc đáo...",
-                coding: "Tôi sẽ viết code cho chức năng này. Để đảm bảo chất lượng, tôi sẽ include cả comments và error handling...",
-                default: "Cảm ơn bạn đã đặt câu hỏi! Tôi sẽ cố gắng trả lời một cách chi tiết và hữu ích nhất có thể."
-            };
-            
-            const baseResponse = responses[currentMode] || responses.default;
-            
-            // Add some specific responses based on keywords
-            if (userMessage.toLowerCase().includes('evngenco1')) {
-                return "EVNGENCO1 là đơn vị phát điện quan trọng của EVN. Tôi có thể hỗ trợ bạn với các vấn đề liên quan đến hoạt động sản xuất điện, báo cáo kỹ thuật, và các công việc khác. Bạn cần hỗ trợ gì cụ thể?";
-            }
-            
-            if (userMessage.toLowerCase().includes('báo cáo')) {
-                return "Tôi có thể giúp bạn soạn thảo nhiều loại báo cáo khác nhau như báo cáo sản xuất, báo cáo kỹ thuật, báo cáo tài chính, hay báo cáo tổng kết. Bạn muốn tôi hỗ trợ loại báo cáo nào?";
-            }
-            
-            return baseResponse;
-        }
-
-        function clearChat() {
-            const messagesContainer = document.getElementById('chatMessages');
-            messagesContainer.innerHTML = `
-                <div class="welcome-message">
-                    <h4>Cuộc trò chuyện mới đã được bắt đầu! 🎉</h4>
-                    <p>Tôi đã sẵn sàng hỗ trợ bạn. Hãy đặt câu hỏi hoặc yêu cầu bất kỳ!</p>
-                </div>
-            `;
-            
-            // Reset current mode
-            currentMode = null;
-            document.querySelectorAll('.action-btn').forEach(btn => btn.classList.remove('active'));
-            updatePlaceholder();
-        }
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            updatePlaceholder();
-        });
-    </script>
 </body>
 </html>
