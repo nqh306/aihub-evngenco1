@@ -79,10 +79,10 @@
         </header>
 
 
-        <section id="home" class="content-section active flex-1 overflow-auto md:overflow-hidden p-6">
-            <div class="max-w-6xl mx-auto h-full flex flex-col justify-center">
+        <section id="home" class="content-section active flex-1 overflow-auto p-6">
+            <div class="max-w-6xl mx-auto md:h-full md:flex md:flex-col md:justify-center">
 
-                <div class="text-center space-y-4 animate-fade-in flex-shrink-0 mb-8">
+                <div class="text-center space-y-4 animate-fade-in flex-shrink-0 my-8">
                     <div class="relative inline-block">
                         <div
                             class="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full blur-3xl opacity-20 animate-pulse-slow">
@@ -93,7 +93,7 @@
                     </div>
                 </div>
 
-                <div class="animate-slide-up" style="animation-delay: 0.2s">
+                <div class="animate-slide-up my-8" style="animation-delay: 0.2s">
                     <div
                         class="bg-white/70 backdrop-blur-lg rounded-3xl shadow-2xl border border-white/50 overflow-hidden">
                         <div class="bg-gradient-to-r from-blue-500 to-purple-600 p-8 text-white text-center">
@@ -144,7 +144,7 @@
                     </div>
                 </div>
 
-                <div class="animate-slide-up mt-8" style="animation-delay: 0.4s">
+                <div class="animate-slide-up my-8" style="animation-delay: 0.4s">
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
                         <div
                             class="bg-white/60 backdrop-blur-sm rounded-2xl p-6 text-center hover:bg-white/80 transition-all duration-300">
@@ -799,40 +799,40 @@
         overlay.addEventListener('click', () => {
             closeMobileMenu();
         });
-        
+
 
         const messageInput = document.getElementById('messageInput');
-    const chatMessages = document.getElementById('chatMessages');
+        const chatMessages = document.getElementById('chatMessages');
 
-    // Hàm tự động điều chỉnh chiều cao ô nhập liệu
-    function adjustTextareaHeight(el) {
-        el.style.height = 'auto';
-        el.style.height = (el.scrollHeight) + 'px';
-    }
-
-    // Hàm xử lý khi nhấn Enter để gửi
-    function handleKeyPress(event) {
-        if (event.key === 'Enter' && !event.shiftKey) {
-            event.preventDefault(); // Ngăn xuống dòng
-            sendMessage();
-        }
-    }
-    
-    // Hàm để cuộn xuống cuối màn hình chat
-    function scrollToBottom() {
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-    }
-
-    // Hàm chính để gửi tin nhắn
-    function sendMessage() {
-        const messageText = messageInput.value.trim();
-
-        if (messageText === '') {
-            return; // Không gửi tin nhắn rỗng
+        // Hàm tự động điều chỉnh chiều cao ô nhập liệu
+        function adjustTextareaHeight(el) {
+            el.style.height = 'auto';
+            el.style.height = (el.scrollHeight) + 'px';
         }
 
-        // 1. Hiển thị tin nhắn của người dùng
-        const userMessageHtml = `
+        // Hàm xử lý khi nhấn Enter để gửi
+        function handleKeyPress(event) {
+            if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault(); // Ngăn xuống dòng
+                sendMessage();
+            }
+        }
+
+        // Hàm để cuộn xuống cuối màn hình chat
+        function scrollToBottom() {
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Hàm chính để gửi tin nhắn
+        function sendMessage() {
+            const messageText = messageInput.value.trim();
+
+            if (messageText === '') {
+                return; // Không gửi tin nhắn rỗng
+            }
+
+            // 1. Hiển thị tin nhắn của người dùng
+            const userMessageHtml = `
             <div class="flex items-end justify-end gap-3">
                  <div class="order-1 bg-primary text-white p-3 rounded-2xl rounded-br-none shadow-sm max-w-md">
                     <p>${messageText}</p>
@@ -841,15 +841,15 @@
                     <i class="fas fa-user"></i>
                 </div>
             </div>`;
-        chatMessages.insertAdjacentHTML('beforeend', userMessageHtml);
+            chatMessages.insertAdjacentHTML('beforeend', userMessageHtml);
 
-        // 2. Xóa ô nhập liệu và cuộn xuống
-        messageInput.value = '';
-        adjustTextareaHeight(messageInput); // Reset chiều cao
-        scrollToBottom();
+            // 2. Xóa ô nhập liệu và cuộn xuống
+            messageInput.value = '';
+            adjustTextareaHeight(messageInput); // Reset chiều cao
+            scrollToBottom();
 
-        // 3. Hiển thị hiệu ứng "đang suy nghĩ"
-        const thinkingIndicatorHtml = `
+            // 3. Hiển thị hiệu ứng "đang suy nghĩ"
+            const thinkingIndicatorHtml = `
             <div id="thinking-indicator" class="flex items-end gap-3">
                 <div class="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-accent text-white flex items-center justify-center flex-shrink-0 shadow-md">
                     <i class="fas fa-robot"></i>
@@ -862,18 +862,18 @@
                     </div>
                 </div>
             </div>`;
-        chatMessages.insertAdjacentHTML('beforeend', thinkingIndicatorHtml);
-        scrollToBottom();
-        
-        // 4. Mô phỏng chatbot trả lời sau 2 giây
-        setTimeout(() => {
-            const thinkingIndicator = document.getElementById('thinking-indicator');
-            if (thinkingIndicator) {
-                thinkingIndicator.remove(); // Xóa hiệu ứng "đang suy nghĩ"
-            }
+            chatMessages.insertAdjacentHTML('beforeend', thinkingIndicatorHtml);
+            scrollToBottom();
 
-            // Hiển thị câu trả lời của chatbot
-            const aiResponseHtml = `
+            // 4. Mô phỏng chatbot trả lời sau 2 giây
+            setTimeout(() => {
+                const thinkingIndicator = document.getElementById('thinking-indicator');
+                if (thinkingIndicator) {
+                    thinkingIndicator.remove(); // Xóa hiệu ứng "đang suy nghĩ"
+                }
+
+                // Hiển thị câu trả lời của chatbot
+                const aiResponseHtml = `
                 <div class="flex items-end gap-3">
                     <div class="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-accent text-white flex items-center justify-center flex-shrink-0 shadow-md">
                         <i class="fas fa-robot"></i>
@@ -882,39 +882,39 @@
                         <p class="text-gray-800">Tính năng này sẽ được kết nối với API Model AI trong thời gian sớm nhất...</p>
                     </div>
                 </div>`;
-            chatMessages.insertAdjacentHTML('beforeend', aiResponseHtml);
-            scrollToBottom();
-        }, 2000); // 2000ms = 2 giây
-    }
-    
-    // Logic cho các nút khác trong phần chat (ví dụ: đính kèm file, xóa chat)
-    // Bạn có thể thêm code cho các hàm này ở đây
-    function toggleAction(action) {
-      console.log("Action toggled:", action);
-      // Logic để bật/tắt chế độ
-    }
-    
-    function clearChat() {
-      // Logic để xóa nội dung chat
-      // Tạm thời chỉ làm mới trang để xóa chat
-      window.location.reload();
-    }
-    
-    // Gắn sự kiện cho nút đính kèm file
-    document.getElementById('attachBtn').addEventListener('click', () => document.getElementById('fileInput').click());
+                chatMessages.insertAdjacentHTML('beforeend', aiResponseHtml);
+                scrollToBottom();
+            }, 2000); // 2000ms = 2 giây
+        }
 
-    function handleFileSelect(event) {
-        const file = event.target.files[0];
-        if (file) {
-            // Hiển thị thông báo đã chọn file
-             const fileNoticeHtml = `
+        // Logic cho các nút khác trong phần chat (ví dụ: đính kèm file, xóa chat)
+        // Bạn có thể thêm code cho các hàm này ở đây
+        function toggleAction(action) {
+            console.log("Action toggled:", action);
+            // Logic để bật/tắt chế độ
+        }
+
+        function clearChat() {
+            // Logic để xóa nội dung chat
+            // Tạm thời chỉ làm mới trang để xóa chat
+            window.location.reload();
+        }
+
+        // Gắn sự kiện cho nút đính kèm file
+        document.getElementById('attachBtn').addEventListener('click', () => document.getElementById('fileInput').click());
+
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (file) {
+                // Hiển thị thông báo đã chọn file
+                const fileNoticeHtml = `
                 <div class="text-center text-sm text-gray-500 my-2">
                     <span>Đã chọn file: ${file.name}</span>
                 </div>`;
-            chatMessages.insertAdjacentHTML('beforeend', fileNoticeHtml);
-            scrollToBottom();
+                chatMessages.insertAdjacentHTML('beforeend', fileNoticeHtml);
+                scrollToBottom();
+            }
         }
-    }
     </script>
 
 </body>
