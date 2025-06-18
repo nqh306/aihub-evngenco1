@@ -172,58 +172,65 @@
         </section>
 
 
-        <section id="chat"
-            class="content-section hidden flex-1 overflow-auto p-8 bg-white/80 backdrop-blur-sm rounded-tl-3xl shadow-inner">
-            <h2 class="text-3xl font-bold text-primary text-center mb-6">Chat AI</h2>
-            <div class="flex flex-col h-[80vh] bg-white rounded-2xl shadow-xl overflow-hidden">
-                <div class="bg-gradient-to-r from-secondary to-primary text-white p-4">
-                    <h3 class="text-xl font-semibold">Trợ lý AI EVNGENCO1</h3>
-                    <p class="text-sm opacity-90">Được hỗ trợ bởi các mô hình AI tiên tiến</p>
-                </div>
-                <div id="chatMessages" class="flex-1 p-4 overflow-y-auto space-y-4">
-                    <div class="welcome-message text-center text-gray-500">
-                        <h4 class="font-medium">Xin chào! Tôi là trợ lý AI của EVNGENCO1 👋</h4>
-                        <p>Tôi có thể giúp gì cho bạn? Hãy bắt đầu cuộc trò chuyện!</p>
-                    </div>
-                </div>
-                <div class="p-4 border-t border-gray-200">
-                    <div class="flex flex-wrap gap-2 mb-3">
-                        <button
-                            class="action-btn px-3 py-1 border rounded-full text-sm flex items-center gap-1 hover:bg-gray-100"
-                            onclick="toggleAction('research')"><i class="fas fa-search"></i> Deep Research</button>
-                        <button
-                            class="action-btn px-3 py-1 border rounded-full text-sm flex items-center gap-1 hover:bg-gray-100"
-                            onclick="toggleAction('analysis')"><i class="fas fa-chart-line"></i> Phân tích</button>
-                        <button
-                            class="action-btn px-3 py-1 border rounded-full text-sm flex items-center gap-1 hover:bg-gray-100"
-                            onclick="toggleAction('creative')"><i class="fas fa-lightbulb"></i> Sáng tạo</button>
-                        <button
-                            class="action-btn px-3 py-1 border rounded-full text-sm flex items-center gap-1 hover:bg-gray-100"
-                            onclick="toggleAction('coding')"><i class="fas fa-code"></i> Lập trình</button>
-                        <button
-                            class="action-btn px-3 py-1 border rounded-full text-sm flex items-center gap-1 hover:bg-gray-100"
-                            onclick="clearChat()"><i class="fas fa-trash"></i> Xóa chat</button>
-                    </div>
-                    <div class="flex items-end gap-2">
-                        <select id="aiModel" class="border rounded-lg px-2 py-1 focus:ring-2 focus:ring-accent">
-                            <option value="chatgpt">GPT-4</option>
-                            <option value="claude">Claude</option>
-                            <option value="gemini">Gemini</option>
-                            <option value="internal" disabled>AI nội bộ</option>
-                        </select>
-                        <button id="attachBtn" type="button"
-                            class="w-10 h-10 flex items-center justify-center border rounded-full hover:bg-gray-100 transition">
-                            <i class="fas fa-paperclip text-gray-600"></i>
-                            <input id="fileInput" type="file" class="hidden" onchange="handleFileSelect(event)" />
-                        </button>
+        <section id="chat" class="content-section hidden flex flex-col h-full overflow-hidden">
+            <div class="flex-1 flex flex-col bg-white/50 backdrop-blur-sm overflow-hidden md:rounded-tl-3xl">
 
-                        <textarea id="messageInput" rows="1" placeholder="Nhập tin nhắn của bạn..."
-                            class="message-input flex-1 border rounded-2xl px-4 py-2 focus:ring-2 focus:ring-accent resize-none"
+                <div class="bg-gradient-to-r from-secondary to-primary text-white p-4 shadow-md z-10 flex-shrink-0">
+                    <h3 class="text-xl font-semibold text-center">Trợ lý AI EVNGENCO1</h3>
+                </div>
+
+                <div id="chatMessages" class="flex-1 p-4 md:p-6 space-y-6 overflow-y-auto">
+                    <div class="text-center text-gray-500 my-8">
+                        <div class="inline-block bg-white p-4 rounded-2xl shadow-sm">
+                            <img src="https://assets-v2.lottiefiles.com/a/97fc9faa-117f-11ee-a3b3-5fb6ab9865dc/vR6mwrGRsr.gif" alt="Logo"
+                                class="w-24 mx-auto mb-2">
+                            <h4 class="font-medium text-lg text-gray-800">Xin chào! Tôi là trợ lý AI của EVNGENCO1 👋</h4>
+                            <p class="text-sm">Tôi có thể giúp gì cho bạn hôm nay?</p>
+                        </div>
+                    </div>
+                    <div class="h-4"></div>
+                </div>
+
+                <div class="p-3 md:p-4 border-t bg-white/70 backdrop-blur-md flex-shrink-0">
+                    <div class="flex items-center flex-wrap gap-x-4 gap-y-2 mb-3">
+                        <div class="flex items-center gap-2">
+                            <label for="aiModel" class="text-sm font-medium text-gray-600">Model:</label>
+                            <select id="aiModel"
+                                class="border-gray-200 border rounded-lg px-2 py-1 text-sm focus:ring-2 focus:ring-accent">
+                                <option value="internal" disabled>AI nội bộ- Tư vấn pháp lý</option>
+                                <option value="internal" disabled>AI nội bộ- DOffice</option>
+                                <option value="chatgpt">GPT-4o mini</option>
+                                <option value="claude">Claude Sonnet</option>
+                                <option value="gemini">Gemini 2.0 Pro</option>
+                                
+                            </select>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            
+                            <button id="attachBtn" type="button" class="text-gray-500 hover:text-primary transition"
+                                aria-label="Đính kèm file">
+                                <i class="fas fa-paperclip text-lg"></i>
+                                <input id="fileInput" type="file" class="hidden" onchange="handleFileSelect(event)" />
+                            </button>
+                            <button onclick="toggleAction('research')" class="flex items-center gap-2 px-3 py-1.5 border border-gray-300 rounded-full text-sm text-gray-700 hover:bg-gray-100 transition">
+                                <i class="fas fa-search text-primary"></i>
+                                <span>Deep Research</span>
+                            </button>
+                            <button onclick="clearChat()" class="text-gray-500 hover:text-red-500 transition"
+                                aria-label="Xóa cuộc trò chuyện">
+                                <i class="fas fa-trash text-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="flex items-end gap-2">
+                        <textarea id="messageInput" rows="1" placeholder="Nhập tin nhắn..."
+                            class="flex-1 border-gray-300 border bg-white rounded-2xl px-4 py-2 focus:ring-2 focus:ring-accent resize-none transition-all duration-200"
                             oninput="adjustTextareaHeight(this)" onkeypress="handleKeyPress(event)"></textarea>
                         <button id="sendBtn" type="button"
-                            class="send-btn w-10 h-10 bg-gradient-to-r from-secondary to-primary text-white rounded-full shadow-md flex items-center justify-center transition"
+                            class="w-12 h-12 bg-gradient-to-r from-secondary to-primary text-white rounded-full shadow-lg flex items-center justify-center transition hover:scale-105 active:scale-95 flex-shrink-0"
                             onclick="sendMessage()">
-                            <i class="fas fa-paper-plane"></i>
+                            <i class="fas fa-paper-plane text-xl"></i>
                         </button>
                     </div>
                 </div>
