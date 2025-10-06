@@ -1,0 +1,129 @@
+/* === Model picker (popover) === */
+.model-panel {
+  background: var(--p-surface-0);
+  padding: var(--space-2);
+}
+.search-bar {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--p-surface-200);
+  background: var(--p-surface-0);
+}
+.search-bar i {
+  color: var(--p-surface-500);
+}
+.search-bar input {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 0.95rem;
+}
+.list {
+  /* MODIFIED: Giảm chiều cao tối đa để popover có thể tự động lật lên trên */
+  max-height: 30vh;
+  overflow: auto;
+  padding: 6px 0;
+}
+.group {
+  padding: 6px 8px;
+}
+.group-title {
+  font-weight: 700;
+  color: #111827;
+  margin: 6px 10px 8px;
+}
+.group-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.group-item:hover {
+  background: #f3f4f6;
+}
+.left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.name {
+  color: #0f172a;
+}
+
+/* Updated styles for cost display */
+.right {
+  .cost-display {
+    font-size: 0.8rem; /* Font chữ nhỏ hơn */
+    font-weight: 500;
+    text-align: right;
+  }
+
+  .cost-free {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--p-green-600); /* Màu xanh lá cây */
+    font-weight: 600;
+
+    i {
+      font-size: 0.9rem;
+    }
+  }
+
+  .cost-paid {
+    color: var(--p-surface-500); /* Màu chữ mờ */
+    line-height: 1.4;
+
+    .cost-line strong {
+      font-weight: 600;
+      color: var(--p-surface-700); /* Màu số đậm hơn một chút */
+      font-variant-numeric: tabular-nums;
+    }
+  }
+}
+
+.bolt {
+  font-size: 14px;
+  color: #6366f1;
+}
+
+.model-tag {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 9999px;
+}
+
+.tag-chuyen-sau {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}
+.tag-toan-dien {
+  background-color: #dbeafe;
+  color: #1d4ed8;
+}
+.tag-sang-tao {
+  background-color: #dcfce7;
+  color: #15803d;
+}
+.tag-nhanh-gon {
+  background-color: #f0fdf4;
+  color: #16a34a;
+}
+
+@media (max-width: 1024px) {
+  .page {
+    grid-template-columns: 1fr;
+  }
+  .left {
+    border-right: none;
+    border-bottom: 1px solid var(--p-surface-200);
+  }
+}

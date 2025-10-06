@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+@use './tailwind.css';
+@use './layout/layout.scss';
+@use 'primeicons/primeicons.css';
+@use './demo/demo.scss';
+
+/* Global font settings */
+html, body, app-root {
+  font-family: Helvetica, 'Roboto', Tahoma, 'Segoe UI', Arial, sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+@import "prismjs/themes/prism.css";

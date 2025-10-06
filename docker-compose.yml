@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  aihub-evngenco1-app:
+    # Đặt tên và tag cho image sẽ được build ra
+    image: aihub-evngenco1-app-prod:latest
+    
+    # Ra lệnh build image từ Dockerfile trong thư mục hiện tại (.)
+    build: .
+    
+    # Đặt tên cụ thể cho container khi nó chạy để dễ quản lý
+    container_name: aihub-evngenco1-app
+    
+    ports:
+      # Ánh xạ cổng (port) từ VPS vào container
+      # CỔNG_BÊN_NGOÀI:CỔNG_BÊN_TRONG
+      - "8080:80"
+      
+    # Tự động khởi động lại container nếu nó bị dừng (trừ khi bạn tự tay dừng)
+    restart: unless-stopped
